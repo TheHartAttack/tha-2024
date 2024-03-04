@@ -1,0 +1,173 @@
+.form
+  &__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 1rem
+    margin-bottom: 0.75rem
+    &--justify-end
+      justify-content: flex-end
+
+  &__heading
+    font-size: 1rem
+    font-weight: 600
+    margin-bottom: 0
+
+  &__message
+    display: block
+    font-size: 0.75rem
+    font-weight: 600
+    color: $red
+    margin-top: 1rem
+    animation: formMessage 500ms 10000ms forwards ease-in-out
+    &--success
+      color: $green
+
+  &__group
+    display: flex
+    flex-direction: column
+    margin-bottom: 0.75rem
+    &:has(input[type='checkbox'])
+      flex-direction: row
+      gap: 0.25rem
+      align-items: center
+
+  &__label
+    font-size: 0.75rem
+    font-weight: 600
+    margin-bottom: 0.25em
+    &--inline
+      margin-bottom: 0
+      cursor: pointer
+
+  &__input
+    font-size: 0.875rem
+    padding: 0.5rem
+    border: 1px solid $grey
+    &--comments
+      background: unset
+      border: none
+      border-bottom: 1px solid $grey
+      outline: none
+      box-sizing: border-box
+      padding-bottom: calc(0.5rem + 1px)
+      &:focus
+        border-bottom-width: 0.125rem
+        padding-bottom: 0.5rem
+
+  &__textarea
+    font-size: 0.875rem
+    min-height: 5rem
+    padding: 0.5rem
+    border: 1px solid $grey
+    resize: none
+    &--large
+      min-height: 10rem
+
+  &__footer
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 1rem
+    &--justify-end
+      justify-content: flex-end
+    &--hidden
+      display: none
+    &-links
+      display: flex
+      flex-direction: column
+      align-items: flex-end
+      gap: 0.25rem
+    &-link
+      font-size: 0.75rem
+      font-weight: 600
+      text-decoration: none
+      color: $black
+      transition: color 250ms ease-in-out
+      &:hover
+        color: $red
+
+  &__submit
+    padding: 0.5rem 0.75rem
+    cursor: pointer
+    border: none
+    // border-radius: 1rem
+    background: $black
+    color: $white
+    text-transform: uppercase
+    font-weight: 600
+    font-size: 0.75rem
+    transition: background-color 250ms ease-in-out
+    &::after
+      content: var(--icon, "")
+      font-family: 'Font Awesome 5 Free'
+      font-weight: 900
+      margin-left: 0.5rem
+      display: inline-block
+    &:hover
+      background: $red
+      &::after
+        animation: blink 1000ms infinite ease-in-out
+    &[disabled]
+      background: rgba($grey, 0.5)
+      color: $grey
+      cursor: auto
+    &--loading
+      &::after
+        content: "\f110"
+        animation: spin 1s linear infinite
+      &:hover
+        &::after
+          animation: spin 1s linear infinite
+
+  &__upload
+    $this: &
+    width: 100%
+    max-width: 20rem
+    aspect-ratio: 1/1
+    margin-bottom: 0.75rem
+    &--preview
+      #{$this}-label
+        &::after
+          content: "\f1f8"
+          color: rgba($white, 0.125)
+        &:hover
+          &::after
+            background: rgba($black, 0.875)
+    &-label
+      position: relative
+      display: block
+      width: 100%
+      height: 100%
+      border: 0.125rem solid $black
+      box-sizing: border-box
+      background: var(--bg-image, $grey)
+      background-size: cover
+      background-position: center top
+      &::after
+        content: "\f093"
+        font-family: "Font Awesome 5 Free"
+        font-weight: 900
+        font-size: 2.5rem
+        background: rgba($black, 0.5)
+        color: rgba($white, 0.25)
+        position: absolute
+        height: 100%
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: center
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        transition: all 250ms ease-in-out
+      &:hover
+        cursor: pointer
+        &::after
+          color: $white
+    &-input
+      position: absolute
+      height: 1px
+      width: 1px
+      opacity: 0
+      visibility: hidden

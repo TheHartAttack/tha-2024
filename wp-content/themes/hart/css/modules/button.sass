@@ -1,0 +1,31 @@
+.button
+  text-decoration: none
+  display: inline-block
+  padding: 0.5rem 0.75rem
+  cursor: pointer
+  border: none
+  // border-radius: 1rem
+  background: $black
+  color: $white
+  text-transform: uppercase
+  font-weight: 600
+  font-size: 0.75rem
+  line-height: 1em
+  transition: background-color 250ms ease-in-out
+  &::after
+    content: var(--icon, "")
+    font-family: var(--icon-font, 'Font Awesome 5 Free')
+    font-weight: var(--icon-weight, 900)
+    margin-left: 0.5rem
+    width: 1em
+    display: inline-flex
+    justify-content: center
+  &:hover
+    background: $red
+    &::after
+      animation: blink 1000ms infinite ease-in-out
+
+  &--icon-only
+    font-size: 1rem
+    &::after
+      margin-left: 0

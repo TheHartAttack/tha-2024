@@ -1,0 +1,25 @@
+[18-Feb-2024 14:18:00 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function wp() in /home/theharta/public_html/wp-blog-header.php:16
+Stack trace:
+#0 /home/theharta/public_html/index.php(17): require()
+#1 {main}
+  thrown in /home/theharta/public_html/wp-blog-header.php on line 16
+[18-Feb-2024 14:18:02 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function wp() in /home/theharta/public_html/wp-blog-header.php:16
+Stack trace:
+#0 /home/theharta/public_html/index.php(17): require()
+#1 {main}
+  thrown in /home/theharta/public_html/wp-blog-header.php on line 16
+[18-Feb-2024 14:18:41 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function wp() in /home/theharta/public_html/wp-blog-header.php:16
+Stack trace:
+#0 /home/theharta/public_html/index.php(17): require()
+#1 {main}
+  thrown in /home/theharta/public_html/wp-blog-header.php on line 16
+[18-Feb-2024 14:20:46 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function wp() in /home/theharta/public_html/wp-blog-header.php:16
+Stack trace:
+#0 /home/theharta/public_html/index.php(17): require()
+#1 {main}
+  thrown in /home/theharta/public_html/wp-blog-header.php on line 16
+[18-Feb-2024 14:23:02 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function wp() in /home/theharta/public_html/wp-blog-header.php:16
+Stack trace:
+#0 /home/theharta/public_html/index.php(17): require()
+#1 {main}
+  thrown in /home/theharta/public_html/wp-blog-header.php on line 16

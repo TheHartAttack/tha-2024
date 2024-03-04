@@ -1,0 +1,187 @@
+@use 'sass:math'
+
+.header
+  $this: &
+  $size: 80px
+  $width: 13
+  position: sticky
+  top: -80px
+  height: 160px
+  background: $grey
+  overflow: hidden
+  z-index: 1
+  @media (min-width: $large)
+    top: -240px
+    height: 320px
+  &--scrolled
+    #{$this}__tha, #{$this}__pentagram
+      opacity: 0
+    #{$this}__scrolled-tha
+      opacity: 1
+
+  &__hex
+    height: $size
+    width: $size
+    clip-path: $hex
+    background-color: $black
+    position: absolute
+    transform: translate(-50%, -50%)
+    $left: calc(($size * 1.65) * (($width - 2) / 2))
+    $top: 0px
+    $oddRow: 1
+    $evenRow: 1
+    @for $i from 1 through 112
+      &:nth-of-type(#{$i})
+        left: calc(50% - #{$left})
+        top: $top
+        $left: $left - calc($size * 1.65)
+        @if $i == calc((2 * $oddRow - 1) * $width - $oddRow)
+          $left: calc(($size * 1.65) * (($width - 1) / 2))
+          $top: $top + calc($size / 2)
+        @if $i == calc(2 * $evenRow * $width - $evenRow)
+          $left: calc(($size * 1.65) * (($width - 2) / 2))
+          $top: $top + calc($size / 2)
+        @if $i == calc((2 * $oddRow - 1) * $width - ($oddRow - 1))
+          $oddRow: $oddRow + 1
+          background: linear-gradient(90deg, rgba(0,0,0,0) 0%, $black 100%)
+        @if $i == calc((2 * $evenRow) * $width - $evenRow)
+          $evenRow: $evenRow + 1
+          background: linear-gradient(270deg, rgba(0,0,0,0) 0%, $black 100%)
+
+  &__logo
+    position: absolute
+    height: 60px
+    left: 50%
+    top: 40px
+    transform: translate(-50%, -50%)
+    fill: $red
+    @media (min-width: $large)
+      height: 160px
+      top: 120px
+
+  &__tha
+    display: none
+    position: absolute
+    height: 120px
+    top: 120px
+    transform: translate(-50%, -50%)
+    fill: $red
+    opacity: 1
+    transition: opacity 250ms ease-in-out
+    &--left
+      left: calc(50% - $size * 1.65 * 2.5)
+      @media (min-width: $huge)
+        left: calc(50% - $size * 1.65 * 3)
+    &--right
+      left: calc(50% + $size * 1.65 * 2.5)
+      @media (min-width: $huge)
+        left: calc(50% + $size * 1.65 * 3)
+    @media (min-width: $large)
+      display: block
+
+  &__pentagram
+    @extend #{$this}__tha
+    &--left
+      left: calc(50% - $size * 1.65 * 3.5)
+      @media (min-width: $huge)
+        left: calc(50% - $size * 1.65 * 5)
+    &--right
+      left: calc(50% + $size * 1.65 * 3.5)
+      transform: translate(-50%, -50%) scaleX(-1)
+      @media (min-width: $huge)
+        left: calc(50% + $size * 1.65 * 5)
+
+  &__scrolled-tha
+    @extend #{$this}__tha
+    height: 40px
+    top: 280px
+    opacity: 0
+    transition: opacity 250ms ease-in-out
+    &--left
+      left: calc(50% - $size * 1.65 * 4)
+    &--right
+      left: calc(50% + $size * 1.65 * 4)
+
+  &__scrolled-pentagram
+    @extend #{$this}__scrolled-tha
+    &--left
+      left: calc(50% - $size * 1.65 * 5)
+    &--right
+      left: calc(50% + $size * 1.65 * 5)
+      transform: translate(-50%, -50%) scaleX(-1)
+
+  &__menu
+    list-style: none
+    display: none
+    @media (min-width: $large)
+      display: block
+    &-item
+      height: $size
+      width: $size
+      clip-path: $hex
+      position: absolute
+      top: 100%
+      left: 50%
+      transform: translate(-50%, -100%)
+      $itemCount: 3
+      @for $i from 1 through $itemCount
+        &:nth-of-type(#{$i})
+          left: calc(50% + ($size * 1.65 * ($i - 1)) - ($size * 1.65 * math.floor(calc($itemCount / 2))))
+    &-link
+      color: $black
+      background: $red
+      text-decoration: none
+      font-weight: 600
+      height: 100%
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      text-align: center
+      transition: all 250ms ease-in-out
+      &::before
+        content: ""
+        position: absolute
+        inset: 0.125rem
+        clip-path: $hex
+        background: $black
+        opacity: 0
+        transition: opacity 250ms ease-in-out
+      &:hover
+        color: $red
+        &::before
+          opacity: 1
+      & > i
+        font-size: 2rem
+        z-index: 1
+        pointer-events: none
+
+  &__open-mobile-menu
+    height: $size
+    width: $size
+    clip-path: $hex
+    text-decoration: none
+    position: absolute
+    transform: translate(-50%, -50%)
+    top: 120px
+    left: 50%
+    color: $black
+    background: $red
+    font-size: 2rem
+    display: flex
+    align-items: center
+    justify-content: center
+    &::before
+      content: ""
+      position: absolute
+      inset: 0.125rem
+      clip-path: $hex
+      background: $black
+      opacity: 0
+      transition: opacity 250ms ease-in-out
+    &--active
+      color: $red
+      &::before
+        opacity: 1
+    @media (min-width: $large)
+      display: none

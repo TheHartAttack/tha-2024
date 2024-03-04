@@ -1,0 +1,23 @@
+{
+  "name": "hart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "dev": "wp-scripts start",
+    "devFast": "wp-scripts start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@wordpress/scripts": "*",
+    "axios": "^0.21.1",
+    "dayjs": "^1.11.10",
+    "normalize.css": "^8.0.1",
+    "underscore": "^1.13.6"
+  }
+}

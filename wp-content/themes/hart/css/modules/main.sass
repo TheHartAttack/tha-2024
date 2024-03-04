@@ -1,0 +1,11 @@
+.main
+  grid-area: main
+  display: grid
+  align-content: start
+  grid-template-columns: minmax(0, 1fr)
+  gap: 0.5rem
+  @media (min-width: $medium)
+    grid-template-columns: repeat(2, 1fr)
+    gap: 1rem
+  // @media (min-width: $large)
+  //   gap: 2rem

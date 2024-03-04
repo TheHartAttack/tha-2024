@@ -1,0 +1,48 @@
+.footer
+    $size: 80px
+    $width: 13
+    background: $grey
+    height: $size
+    overflow: hidden
+    position: relative
+
+    &__hex
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        gap: 0.125rem
+        background: $black
+        clip-path: $hex
+        height: $size
+        width: $size
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        $left: calc(($size * 1.65) * (($width - 2) / 2))
+        $top: 0px
+        @for $i from 1 through 37
+            &:nth-of-type(#{$i})
+                left: calc(50% - #{$left})
+                top: $top
+                $left: $left - calc($size * 1.65)
+                @if $i == calc($width - 1)
+                    $left: calc(($size * 1.65) * (($width - 1) / 2))
+                    $top: $top + calc($size / 2)
+                @if $i == calc($width + $width - 1)
+                    $left: calc(($size * 1.65) * (($width - 2) / 2))
+                    $top: $top + calc($size / 2)
+                @if $i == $width
+                    background: linear-gradient(90deg, rgba(0,0,0,0) 0%, $black 100%)
+                @if $i == calc($width + $width - 1)
+                    background: linear-gradient(270deg, rgba(0,0,0,0) 0%, $black 100%)
+
+    &__text
+        color: $red
+        font-size: 0.625rem
+        font-weight: 600
+        line-height: 0.875rem
+        &--large
+            font-size: 1.25rem
+            line-height: 1.25rem

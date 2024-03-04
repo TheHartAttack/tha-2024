@@ -1,0 +1,84 @@
+.comment
+  $this: &
+  display: grid
+  gap: 0.25rem 1rem
+  grid-template-columns: auto 1fr auto
+  grid-template-rows: repeat(2, auto)
+  grid-template-areas: "image info likes" "image content content"
+  &:not(:last-child)
+    margin-bottom: 2rem
+  &[data-liked="true"]
+    #{$this}__like-icon
+      &.fa-solid
+        position: static
+        opacity: 1
+      &.fa-regular
+        position: absolute
+        right: 0
+        opacity: 0
+
+  &__image
+    grid-area: image
+    height: 3rem
+    width: 3rem
+    // border-radius: 3rem
+
+  &__info
+    grid-area: info
+    display: flex
+    align-items: center
+    gap: 0.5rem
+
+  &__author
+    font-size: 0.875rem
+    font-weight: 700
+    text-decoration: none
+    color: $black
+    line-height: 1
+
+  &__time
+    font-size: 0.75rem
+    font-weight: 500
+    line-height: 1
+    color: rgba($black, 0.75)
+
+  &__content
+    grid-area: content
+    font-size: 0.875rem
+
+  &__likes
+    grid-area: likes
+    display: flex
+    gap: 1rem
+
+  &__like
+    $this: &
+    display: flex
+    align-items: center
+    gap: 0.25rem
+    font-size: 0.75rem
+    font-weight: 600
+    position: relative
+    &--active
+      #{$this}-icon
+        &:hover
+          cursor: pointer
+    &--animate
+      &[data-liked="true"]
+        #{$this}-icon
+          &::after
+            content: "\f004"
+            font-family: "Font Awesome 5 Free"
+            font-weight: 900
+            position: absolute
+            z-index: 2
+            right: 0
+            color: $red
+            animation: postLike forwards 500ms ease-out
+    &-icon
+      font-size: 0.875rem
+      &.fa-solid
+        position: absolute
+        right: 0
+        opacity: 0
+        color: $red

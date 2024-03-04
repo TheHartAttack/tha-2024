@@ -1,0 +1,121 @@
+.mobile-menu
+  opacity: 0
+  pointer-events: none
+  $size: 80px
+  $width: 7
+  background: $grey
+  height: 100vh
+  width: 100vw
+  position: fixed
+  bottom: 0
+  left: 0
+  z-index: 9
+  transition: opacity 250ms ease-in-out
+  &--active
+    opacity: 1
+    pointer-events: auto
+  @media (min-width: $large)
+    display: none
+
+  &__hex
+    height: $size
+    width: $size
+    clip-path: $hex
+    background-color: $black
+    position: absolute
+    transform: translate(-50%, -50%)
+    $left: calc(($size * 1.65) * (($width - 2) / 2))
+    $top: 0px
+    $oddRow: 1
+    $evenRow: 1
+    @for $i from 1 through 224
+      &:nth-of-type(#{$i})
+        left: calc(50% - #{$left})
+        top: $top
+        $left: $left - calc($size * 1.65)
+        @if $i == calc((2 * $oddRow - 1) * $width - $oddRow)
+          $left: calc(($size * 1.65) * (($width - 1) / 2))
+          $top: $top + calc($size / 2)
+        @if $i == calc(2 * $evenRow * $width - $evenRow)
+          $left: calc(($size * 1.65) * (($width - 2) / 2))
+          $top: $top + calc($size / 2)
+        @if $i == calc((2 * $oddRow - 1) * $width - ($oddRow - 1))
+          $oddRow: $oddRow + 1
+          background: linear-gradient(90deg, rgba(0,0,0,0) 0%, $black 100%)
+        @if $i == calc((2 * $evenRow) * $width - $evenRow)
+          $evenRow: $evenRow + 1
+          background: linear-gradient(270deg, rgba(0,0,0,0) 0%, $black 100%)
+
+  &__list
+    list-style: none
+
+  &__item
+    height: $size
+    width: $size
+    clip-path: $hex
+    background: $red
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    left: 50%
+    transform: translate(-50%, -100%)
+    $itemCount: 3
+    @for $i from 1 through $itemCount
+      &:nth-of-type(#{$i})
+        top: calc((#{$i} + 2) * $size)
+
+  &__link
+    color: $black
+    font-size: 2rem
+    height: 100%
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    text-decoration: none
+    &::before
+      content: ""
+      position: absolute
+      inset: 0.125rem
+      clip-path: $hex
+      background: $black
+      opacity: 0
+      transition: opacity 250ms ease-in-out
+    &:active
+      color: $red
+      &::before
+        opacity: 1
+    & > i
+      z-index: 1
+
+  &__close
+    height: $size
+    width: $size
+    clip-path: $hex
+    text-decoration: none
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    transform: translate(-50%, -50%)
+    top: 40px
+    left: 50%
+    color: $black
+    background: $red
+    font-size: 2rem
+    &::before
+      content: ""
+      position: absolute
+      inset: 0.125rem
+      clip-path: $hex
+      background: $black
+      opacity: 0
+      transition: opacity 250ms ease-in-out
+    &:active
+      color: $red
+      &::before
+        opacity: 1
+    & > i
+      z-index: 1

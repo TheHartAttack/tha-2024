@@ -1,0 +1,102 @@
+.search-overlay
+  position: fixed
+  inset: 0
+  height: 100%
+  width: 100%
+  background: rgba($black, 0.975)
+  z-index: 999999
+  opacity: 0
+  pointer-events: none
+  display: grid
+  grid-template-rows: auto 1fr
+  gap: 2rem
+  padding: 2rem
+  box-sizing: border-box
+  transition: opacity 250ms ease-in-out
+  &--active
+    opacity: 1
+    pointer-events: auto
+
+  &__container
+    width: 100%
+    max-width: calc(1440px - 4rem)
+    margin: 0 auto
+    box-sizing: border-box
+    height: 100%
+    display: grid
+
+  &__head
+    position: relative
+
+  &__icon
+    color: $black
+    font-size: 2rem
+    position: absolute
+    top: 50%
+    left: 1rem
+    transform: translateY(-50%)
+
+  &__input
+    width: 100%
+    padding: 1rem
+    padding-left: 4rem
+    font-size: 1.25rem
+    border: none
+    box-sizing: border-box
+  
+  &__close
+    position: absolute
+    top: 2rem
+    right: 2rem
+    color: $white
+    text-decoration: none
+    font-size: 3rem
+    padding: 0.25rem
+    height: 3rem
+    width: 3rem
+    display: flex
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    transition: color 250ms ease-in-out
+    &:hover
+      color: $red
+
+  &__body
+    overflow-y: auto
+    padding-bottom: 2rem
+    &::-webkit-scrollbar
+      width: 0.5rem
+    &::-webkit-scrollbar-thumb
+      background: $red
+      border-radius: 0.5rem
+    &::-webkit-scrollbar-track
+      background: transparent
+
+  &__results
+    justify-self: center
+    color: $white
+    display: grid
+    grid-template-columns: minmax(0, 1fr)
+    gap: 1rem
+    @media (min-width: $medium)
+      grid-template-columns: repeat(2, 1fr)
+    @media (min-width: $large)
+      grid-template-columns: repeat(3, 1fr)
+
+  &__loading
+    grid-column: 1/-1
+    align-self: center
+    text-align: center
+    background-image: url('../images/icon.png')
+    background-size: cover
+    height: 20rem
+    width: 20rem
+    animation: loading 1s infinite linear
+
+  &__result
+    box-sizing: border-box
+    border: 1px solid $white
+    transition: border-color 250ms ease-in-out
+    &:hover
+      border-color: $red

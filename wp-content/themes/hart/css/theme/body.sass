@@ -1,0 +1,36 @@
+*
+    margin: 0
+    padding: 0
+    font-family: 'Montserrat', sans-serif
+
+body
+    display: grid
+    grid-template-rows: auto 1fr auto
+    min-height: 100vh
+    background: $red
+    text-wrap: pretty
+    font-weight: 500
+    line-height: 1.5
+    color: $black
+    &:has(.mobile-menu--active)
+        overflow: hidden
+    &:has(#wpadminbar)
+        .mobile-menu
+            height: calc(100vh - 32px)
+    &:has(.search-overlay--active), &:has(.contact-overlay--active)
+        overflow: hidden
+    @media (min-width: $large)
+        &:has(#wpadminbar)
+            min-height: calc(100vh - 32px)
+            .header
+                top: -208px
+            .sidebar
+                top: calc(80px + 4rem)
+
+    &::-webkit-scrollbar
+      width: 1rem
+    &::-webkit-scrollbar-thumb
+      background: $red
+      border: 0.125rem solid $black
+    &::-webkit-scrollbar-track
+      background: $black

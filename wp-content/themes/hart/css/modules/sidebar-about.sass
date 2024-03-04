@@ -1,0 +1,42 @@
+.sidebar-about
+  $size: 60px
+  $width: 3
+  background: $white
+  padding: 1rem
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 1rem
+  @media (min-width: $large)
+    position: sticky
+    top: calc(80px + 3rem)
+
+  &__image
+    width: 100%
+    max-width: 20rem
+    aspect-ratio: 1/1
+    object-fit: cover
+    object-position: top
+    border: 1px solid $black
+    box-sizing: border-box
+
+  &__bio
+    max-width: 20rem
+    font-size: 0.875rem
+    text-align: center
+    line-height: 1.25
+
+    @media (min-width: $large)
+      text-align: left
+
+    & > p
+      &:not(:last-of-type)
+        margin-bottom: 0.5em
+
+  &__socials
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    gap: 0.5rem
+      
+      

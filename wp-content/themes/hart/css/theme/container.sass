@@ -1,0 +1,19 @@
+.container
+    width: 100%
+    max-width: 1440px
+    margin: 0 auto
+    padding: 0.5rem
+    box-sizing: border-box
+    display: grid
+    align-items: start
+    grid-template-areas: "main" "sidebar"
+    grid-template-columns: minmax(0, 1fr)
+    gap: 0.5rem
+    @media (min-width: $medium)
+        gap: 1rem
+        padding: 1rem
+    @media (min-width: $large)
+        // padding: 2rem
+        // gap: 2rem
+        grid-template-areas: "main main sidebar"
+        grid-template-columns: 1fr 1fr auto

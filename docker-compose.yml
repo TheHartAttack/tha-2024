@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  wordpress:
+    image: wordpress
+    depends_on:
+      - ${DB_HOST}
+    links:
+      - ${DB_HOST}
+    ports:
+      - ${WP_PORT}:80
+    volumes:
+      - wordpress:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+      - ./wp-config.php:/var/www/html/wp-config.php
+      - ./php.ini:/usr/local/etc/php/conf.d/custom.ini
+    env_file:
+      - ./.env
+
+  database:
+    image: mysql:5.7
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - ${DB_HOST}
+    links:
+      - ${DB_HOST}
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: ${DB_HOST}
+      PMA_PORT: ${DB_PORT}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      UPLOAD_LIMIT: 1024M
+
+volumes:
+  database:
+  wordpress:
